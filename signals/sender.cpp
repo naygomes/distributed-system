@@ -3,18 +3,14 @@
 #include <signal.h>
 #include <string>
 
-// lista de signals
-// https://www.tutorialspoint.com/unix/unix-signals-traps.htm
-
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    // Server sends a signal to the client
 
     if (argc < 3)
     {
-        cout << "Por favor, informe o número do processo e o sinal" << endl;
+        cout << "Informe o número do processo receptor e o sinal desejado" << endl;
         exit(1);
     }
 
@@ -28,18 +24,18 @@ int main(int argc, char const *argv[])
     cout << "Processo selecionado: " << PID << endl;
     cout << "Sinal selecionado: " << signal << " (" << signalName << ")" << endl;
 
-    // Função kill recebe o número do processo e o código do sinal
+    // Função kill recebe o ID do processo e o signal number
     // 0 verifica se o processo existe
     int process_exists = kill(PID, 0);
 
     if (process_exists != 0)
     {
-        cout << "Processo não existe" << endl;
+        cout << "Processo inexistente" << endl;
         exit(1);
     }
     else
     {
-        cout << "Processo existe" << endl;
+        cout << "Processo existente" << endl;
         kill(PID, signal);
         cout << "Sinal enviado" << endl;
     }

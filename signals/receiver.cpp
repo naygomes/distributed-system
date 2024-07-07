@@ -13,20 +13,22 @@ void signalHandler(int signum)
     switch (signum)
     {
     case SIGFPE:
-        cout << "O sinal SIGFPE foi recebido com sucesso!" << endl;
+        // Operação aritmética errada, como uma divisão por zero ou uma operação que resulta em overflow.
+        cout << "Sinal SIGFPE recebido com sucesso!" << endl;
         break;
     case SIGALRM:
-        cout << "O sinal SIGALRM foi recebido com sucesso!" << endl;
+        // Solicitação de encerramento enviada ao programa.
+        cout << "Sinal SIGALRM recebido com sucesso!" << endl;
         break;
     case SIGTRAP:
-        cout << "O sinal SIGTRAP foi recebido com sucesso!" << endl;
+        // Sinal enviado ao processo quando ocorre uma exceção.
+        cout << "Sinal SIGTRAP recebido com sucesso!" << endl;
         break;
     default:
-        cout << "O sinal recebido não foi identificado. Tente Novamente" << endl;
+        cout << "Sinal não identificado. Tente Novamente" << endl;
     }
 
-    // Termina o processo
-    cout << "Interrompendo sinal (" << signum << ") recebido.\n";
+    cout << "Interrompendo sinal (" << signum << ").\n";
 
     exit(signum);
 }
@@ -36,7 +38,7 @@ int main()
 
     int wait_type;
 
-    cout << "Informe o número da operação:" << endl;
+    cout << "Informe o número que corresponde ao modo de espera desejado:" << endl;
     cout << "0 - Busy Wait" << endl;
     cout << "1 - Blocking Wait" << endl;
 
@@ -64,7 +66,7 @@ int main()
     }
     else
     {
-        cout << "Operação inválida" << endl;
+        cout << "Modo inválido" << endl;
     }
 
     return 0;

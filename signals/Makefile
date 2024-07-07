@@ -1,7 +1,6 @@
 # the compiler
 CC = g++
 
-# the build target executable:
 TARGET  = sender
 TARGET2 = receiver
 
