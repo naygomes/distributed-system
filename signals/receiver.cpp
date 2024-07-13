@@ -25,7 +25,8 @@ void signalHandler(int signum)
         cout << "Sinal SIGTRAP recebido com sucesso!" << endl;
         break;
     default:
-        cout << "Sinal não identificado. Tente Novamente" << endl;
+        cout << "Sinal (" << signum << ") não identificado. Tente Novamente" << endl;
+        break;
     }
 
     cout << "Interrompendo sinal (" << signum << ").\n";
@@ -44,9 +45,13 @@ int main()
 
     cin >> wait_type;
 
-    signal(SIGFPE, signalHandler);
-    signal(SIGALRM, signalHandler);
-    signal(SIGTRAP, signalHandler);
+    // signal(SIGFPE, signalHandler);
+    // signal(SIGALRM, signalHandler);
+    // signal(SIGTRAP, signalHandler);
+
+     for (int i = 1; i < 32; ++i) {
+        signal(i, signalHandler);
+    }
 
     if (wait_type == 0)
     {
