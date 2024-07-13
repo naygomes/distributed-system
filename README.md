@@ -10,15 +10,13 @@ Universidade Federal do Rio de Janeiro
 
 - [Introdução](#introdução)
 - [Signals](#signals)
-- [Pipes](#pipes)
-- [Sockets](#sockets)
 - [Autoras](#autoras)
 
 ## Introdução
 
 Um processo é a execução de um software em um computador, o que requer que o SO (sistema operacional) crie um contexto que abstrai o processo dos componentes físicos do sistema. Devido à virtualização dos recursos, os processos não trocam informações entre si, pois não têm conhecimento dos outros processos em execução.
 
-A comunicação entre processos (IPC) é o conjunto de mecanismos que permite a transferência de informações entre processos. O objetivo deste trabalho é desenvolver uma maior familiaridade com os principais mecanismos de IPC, como **sinais**, **pipes** e **sockets**.
+A comunicação entre processos (IPC) é o conjunto de mecanismos que permite a transferência de informações entre processos. O objetivo deste trabalho é desenvolver uma maior familiaridade com os mecanismos de IPC. Nesse caso, escolhemos o mecanismo de **sinais** para explorarmos essa comunicação.
 
 Vale ressaltar que a linguagem de programação C++ foi a escolhida para o desenvolvimento do trabalho, não somente por ser a recomendação do professor, mas também por sua estreita relação com o SO dos computadores, facilitando o acesso a processos por meio de bibliotecas. Embora não seja uma linguagem de baixo nível, ela proporciona maior controle sobre as operações realizadas e garante um bom desempenho.
 
@@ -65,8 +63,10 @@ $ ./receiver.o
 5. Para saber qual o pID do _receiver.o_, execute o comando abaixo:
 
 ```bash
-$ ps aux
+$ ps aux | grep ./receiver.o
 ```
+
+**\*OBS:** o pID é o valor numérico que aparece na segunda coluna\*.
 
 6. Para executar o _sender.o_ e enviar o sinal, execute o comando abaixo:
 
@@ -76,17 +76,29 @@ $ ./sender.o <pID> <signal number>
 
 ### Resultados
 
-## Pipes
+Executaremos alguns casos de uso do mecanismo escolhido para demonstrarmos o seu funcionamento.
 
-### Intruções de uso
+1. **ENVIANDO SIGALRM COM O RECEPTOR EM BUSY WAIT**
 
-### Resultados
+   No caso abaixo, percebe-se que ao colocarmos o receptor em busy wait, ele fica em _loop_ ativo para verificar periodicamente se o sinal já foi enviado pelo emissor. Quando esse sinal é recebido, ele indica o seu recebimento e interrompe o sinal.
 
-## Sockets
+   Vale ressaltar também que no caso do emissor, é verificado se o processo do receptor existe antes do sinal ser enviado.
 
-### Intruções de uso
+   <img width="1125" alt="image" src="https://github.com/user-attachments/assets/fe4d56da-374d-4bd3-87fc-94253ee78f03">
 
-### Resultados
+2. **ENVIANDO SIGFPE COM O RECEPTOR EM BLOCKING WAIT**
+
+   Em blocking wait percebe-se que o processo fica suspenso até que o sinal seja enviado pelo emissor. Quando esse sinal é recebido, o processo volta e indica o recebimento do sinal, interrompendo-o logo em seguida.
+
+   <img width="1126" alt="image" src="https://github.com/user-attachments/assets/ae9b55f8-0974-4b51-895d-9543b3df907e">
+
+3. **ENVIANDO SIGTRAP COM O RECEPTOR INATIVO**
+
+   Percebe-se que, apesar do processo _./receiver.o_ não estar em execução, o comando _ps aux | grep ./receiver.o_ retorna uma linha na saída. Isso ocorre porque o comando _ps aux_ inclui o próprio comando _grep ./receiver.o_ em sua lista de processos, porque o _grep_ está em execução enquanto o _ps_ está coletando informações sobre os processos. Entretanto, vê-se na figura abaixo que ao pegar esse _pID_ ou até mesmo inventar um valor, ele retorna que o processo é inexistente.
+
+<img width="1124" alt="image" src="https://github.com/user-attachments/assets/963c17f4-7a20-45b7-9f17-09bcaf275685">
+
+4.  **ENVIANDO UM SINAL DESCONHECIDO**
 
 ## Autoras
 
