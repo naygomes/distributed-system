@@ -100,7 +100,7 @@ Executaremos alguns casos de uso do mecanismo escolhido para demonstrarmos o seu
 
 4.  **ENVIANDO UM SINAL DESCONHECIDO**
 
-   Por fim, vemos que ao enviar um sinal desconhecido, esse sinal chega ao receptor mas o mesmo é incapaz de identificá-lo, então ele retorna uma mensagem ao usuário e interrompe o sinal.
+    Por fim, vemos que ao enviar um sinal desconhecido, esse sinal chega ao receptor mas o mesmo é incapaz de identificá-lo, então ele retorna uma mensagem ao usuário e interrompe o sinal.
 
    <img width="1127" alt="image" src="https://github.com/user-attachments/assets/31cc69ba-b02b-4e53-a30c-7eb2f5438424">
 
