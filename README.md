@@ -66,7 +66,7 @@ $ ./receiver.o
 $ ps aux | grep ./receiver.o
 ```
 
-**\*OBS:** o pID é o valor numérico que aparece na segunda coluna\*.
+***OBS:** o pID é o valor numérico que aparece na segunda coluna*.
 
 6. Para executar o _sender.o_ e enviar o sinal, execute o comando abaixo:
 
