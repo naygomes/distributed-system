@@ -45,10 +45,6 @@ int main()
 
     cin >> wait_type;
 
-    // signal(SIGFPE, signalHandler);
-    // signal(SIGALRM, signalHandler);
-    // signal(SIGTRAP, signalHandler);
-
      for (int i = 1; i < 32; ++i) {
         signal(i, signalHandler);
     }
